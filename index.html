@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yağız Can AKAY - AI Engineer & Digital Craftsman</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --accent-color: #f093fb;
+        --background-light: #ffffff;
+        --background-lighter: #f8f9fa;
+        --background-section: #f1f3f4;
+        --text-dark: #1a1a1a;
+        --text-gray: #666666;
+        --text-light-gray: #888888;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --border-light: #e5e7eb;
+        --shadow-light: rgba(0, 0, 0, 0.1);
+        --shadow-medium: rgba(0, 0, 0, 0.15);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Orbitron", monospace;
+        background: var(--background-light);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      /* Animated Background Elements */
+      .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+      }
+
+      .star {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        background: var(--text-light-gray);
+        border-radius: 50%;
+        animation: twinkle 3s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0.3;
+          transform: scale(1.1);
+        }
+      }
+
+      .floating-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        animation: float 10s infinite ease-in-out;
+        opacity: 0.3;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) translateX(0px) rotate(0deg);
+          opacity: 0.2;
+        }
+        25% {
+          transform: translateY(-10px) translateX(8px) rotate(90deg);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translateY(-20px) translateX(-3px) rotate(180deg);
+          opacity: 0.3;
+        }
+        75% {
+          transform: translateY(-10px) translateX(-8px) rotate(270deg);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateY(0px) translateX(0px) rotate(360deg);
+          opacity: 0.2;
+        }
+      }
+
+      .clouds {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .cloud {
+        position: absolute;
+        background: rgba(102, 126, 234, 0.05);
+        border-radius: 30px;
+        animation: drift 20s infinite linear;
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translateX(-150px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        90% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateX(calc(100vw + 150px));
+          opacity: 0;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        z-index: 10;
+        max-width: 800px;
+        padding: 0 20px;
+      }
+
+      .pixel-avatar {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 30px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 50%;
+        position: relative;
+        animation: bounce 3s infinite ease-in-out;
+        box-shadow: 0 10px 30px var(--shadow-light);
+        overflow: hidden;
+      }
+
+      .pixel-avatar::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        background-image: url("pp.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5em;
+        font-weight: 900;
+        margin-bottom: 20px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color),
+          var(--accent-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        font-size: 1.5em;
+        color: var(--text-gray);
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 400;
+        letter-spacing: 1px;
+        opacity: 0.8;
+        animation: fadeInUp 1s ease 0.5s both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 0.9;
+          transform: translateY(0);
+        }
+      }
+
+      /* Sections */
+      .section {
+        padding: 100px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .section h2 {
+        font-size: 2.5em;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 60px;
+        color: var(--text-dark);
+        position: relative;
+      }
+
+      .section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 2px;
+      }
+
+      /* About Section */
+      #about {
+        background: var(--background-section);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        gap: 30px;
+        padding: 0 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        grid-template-areas:
+          "ai-card founder-card"
+          "guitar-card fitness-card";
+      }
+
+      .ai-card {
+        grid-area: ai-card;
+      }
+
+      .founder-card {
+        grid-area: founder-card;
+      }
+
+      .guitar-card {
+        grid-area: guitar-card;
+      }
+
+      .fitness-card {
+        grid-area: fitness-card;
+      }
+
+      .skill-card {
+        background: var(--background-light);
+        padding: 40px 30px;
+        border-radius: 20px;
+        border: 1px solid var(--border-light);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px var(--shadow-light);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px var(--shadow-medium);
+        border-color: var(--primary-color);
+      }
+
+      .skill-card:hover .skill-icon-container {
+        transform: scale(1.05);
+      }
+
+      .skill-icon-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 25px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        box-shadow: 0 8px 20px var(--shadow-light);
+      }
+
+      .skill-icon {
+        font-size: 2.2em;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      .skill-card h3 {
+        color: var(--text-dark);
+        margin-bottom: 18px;
+        font-size: 1.4em;
+        font-weight: 700;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+
+      .skill-card p {
+        line-height: 1.7;
+        color: var(--text-gray);
+        text-align: center;
+        font-size: 0.95em;
+        font-weight: 400;
+      }
+
+      /* Special icons for each card */
+      .ai-icon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .guitar-icon {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .fitness-icon {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .founder-icon {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--background-lighter);
+        padding: 50px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid var(--border-light);
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .social-link {
+        width: 60px;
+        height: 60px;
+        background: var(--background-light);
+        border: 2px solid var(--border-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-dark);
+        font-size: 24px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 6px 20px var(--shadow-light);
+      }
+
+      .social-link img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        filter: none;
+        transition: all 0.3s ease;
+        z-index: 2;
+        position: relative;
+        opacity: 0.8;
+      }
+
+      .social-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px var(--shadow-medium);
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-color: var(--primary-color);
+      }
+
+      .social-link:hover img {
+        filter: brightness(1.1) contrast(1.2);
+        opacity: 1;
+      }
+
+      footer p {
+        color: var(--text-gray);
+        font-size: 0.9em;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .language-toggle {
+          top: 15px;
+          right: 15px;
+        }
+
+        .lang-btn {
+          width: 50px;
+          height: 50px;
+          font-size: 12px;
+        }
+
+        .hero h1 {
+          font-size: 2.5em;
+        }
+
+        .subtitle {
+          font-size: 1.2em;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "ai-card"
+            "founder-card"
+            "guitar-card"
+            "fitness-card";
+          gap: 25px;
+          max-width: 400px;
+        }
+
+        .skill-card {
+          padding: 30px 20px;
+        }
+
+        .skill-icon-container {
+          width: 70px;
+          height: 70px;
+          margin-bottom: 20px;
+          border-radius: 50%;
+        }
+
+        .skill-icon {
+          font-size: 2em;
+        }
+
+        .skill-card h3 {
+          font-size: 1.3em;
+          margin-bottom: 15px;
+        }
+
+        .skill-card p {
+          font-size: 0.9em;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
+        }
+
+        .section {
+          padding: 50px 0;
+        }
+      }
+
+      /* Language Toggle */
+      .language-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+      }
+
+      .lang-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--border-light);
+        background: var(--background-light);
+        box-shadow: 0 4px 15px var(--shadow-light);
+        color: var(--text-dark);
+        font-family: "Orbitron", monospace;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lang-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px var(--shadow-medium);
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-color: var(--primary-color);
+        color: white;
+      }
+
+      .lang-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--background-lighter);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="background-container">
+      <div class="stars"></div>
+      <div class="floating-particles"></div>
+      <div class="clouds"></div>
+    </div>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+      <button id="languageBtn" class="lang-btn">
+        <span class="lang-text">TR</span>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <div class="pixel-avatar"></div>
+        <h1>Yağız Can AKAY</h1>
+        <div class="subtitle" data-key="subtitle">
+          AI Engineer & Digital Craftsman
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2 data-key="aboutTitle">About Me</h2>
+      <div class="about-grid">
+        <div class="skill-card ai-card">
+          <div class="skill-icon-container ai-icon">
+            <span class="skill-icon">🧠</span>
+          </div>
+          <h3 data-key="aiTitle">AI Engineering</h3>
+          <p data-key="aiDescription">
+            Senior AI Engineer passionate about generative AI, transforming
+            cutting-edge research into real-world applications. Building the
+            future with intelligent systems and innovative solutions.
+          </p>
+        </div>
+        <div class="skill-card founder-card">
+          <div class="skill-icon-container founder-icon">
+            <span class="skill-icon">🚀</span>
+          </div>
+          <h3 data-key="founderTitle">Future Founder</h3>
+          <p data-key="founderDescription">
+            Dedicated to turning AI innovations into impactful businesses. Every
+            project is a step toward building solutions that reshape how we
+            interact with technology.
+          </p>
+        </div>
+        <div class="skill-card guitar-card">
+          <div class="skill-icon-container guitar-icon">
+            <span class="skill-icon">🎸</span>
+          </div>
+          <h3 data-key="guitarTitle">Virtuoso Guitarist</h3>
+          <p data-key="guitarDescription">
+            When I'm not coding neural networks, I'm crafting musical
+            masterpieces. Guitar is my creative outlet, where technical
+            precision meets artistic expression.
+          </p>
+        </div>
+        <div class="skill-card fitness-card">
+          <div class="skill-icon-container fitness-icon">
+            <span class="skill-icon">🥊</span>
+          </div>
+          <h3 data-key="fitnessTitle">MMA & Bodybuilding</h3>
+          <p data-key="fitnessDescription">
+            Physical and mental discipline drive my success. MMA sharpens my
+            strategic thinking while bodybuilding builds the persistence needed
+            to tackle complex AI challenges.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="mailto:yagizakay11@gmail.com" class="social-link">
+          <img src="icon/gmailicon.png" alt="Email" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/ya%C4%9F%C4%B1z-can-akay-740255308/"
+          target="_blank"
+          class="social-link"
+        >
+          <img src="icon/LinkedIn_logo.png" alt="LinkedIn" />
+        </a>
+        <a
+          href="https://github.com/yahocan"
+          target="_blank"
+          class="social-link"
+        >
+          <img src="icon/githublogo.png" alt="GitHub" />
+        </a>
+        <a
+          href="https://www.instagram.com/yagizcan_akay/"
+          target="_blank"
+          class="social-link"
+        >
+          <img src="icon/instagramicon.webp" alt="Instagram" />
+        </a>
+      </div>
+      <p data-key="footerText">
+        &copy; 2025 Yağız Can AKAY. Crafted with passion and pixels.
+      </p>
+    </footer>
+
+    <script>
+      // Create animated stars
+      function createStars() {
+        const starsContainer = document.querySelector(".stars");
+        const starCount = 80;
+
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+
+          // Keep stars within safe boundaries
+          star.style.left = 2 + Math.random() * 96 + "%";
+          star.style.top = 2 + Math.random() * 96 + "%";
+          star.style.animationDelay = Math.random() * 2 + "s";
+          star.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+          // Add slight size variation
+          const size = 1 + Math.random() * 2;
+          star.style.width = size + "px";
+          star.style.height = size + "px";
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Create floating particles
+      function createParticles() {
+        const particlesContainer = document.querySelector(
+          ".floating-particles"
+        );
+        const particleCount = 15;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Ensure particles stay within safe boundaries
+          const leftPos = 5 + Math.random() * 90; // 5% to 95%
+          const topPos = 10 + Math.random() * 80; // 10% to 90%
+
+          particle.style.left = leftPos + "%";
+          particle.style.top = topPos + "%";
+          particle.style.animationDelay = Math.random() * 8 + "s";
+          particle.style.animationDuration = Math.random() * 4 + 6 + "s";
+
+          // Add some variety to particle colors
+          const colorVariants = [
+            "var(--primary-color)",
+            "var(--secondary-color)",
+            "var(--accent-color)",
+            "rgba(102, 126, 234, 0.4)",
+          ];
+          particle.style.background =
+            colorVariants[Math.floor(Math.random() * colorVariants.length)];
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Create floating clouds
+      function createClouds() {
+        const cloudsContainer = document.querySelector(".clouds");
+        const cloudCount = 4;
+
+        for (let i = 0; i < cloudCount; i++) {
+          const cloud = document.createElement("div");
+          cloud.className = "cloud";
+          cloud.style.width = Math.random() * 80 + 40 + "px";
+          cloud.style.height = Math.random() * 25 + 15 + "px";
+          cloud.style.top = 10 + Math.random() * 70 + "%"; // Keep clouds in visible area
+          cloud.style.animationDelay = Math.random() * 15 + "s";
+          cloud.style.animationDuration = Math.random() * 8 + 18 + "s";
+          cloud.style.opacity = Math.random() * 0.3 + 0.1; // Vary opacity
+          cloudsContainer.appendChild(cloud);
+        }
+      }
+
+      // Parallax scrolling effect
+      function parallaxScroll() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll(
+          ".stars, .floating-particles, .clouds"
+        );
+
+        parallaxElements.forEach((element, index) => {
+          const speed = (index + 1) * 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      }
+
+      // Mouse follow effect for interactive elements
+      function mouseFollowEffect() {
+        const cards = document.querySelectorAll(".skill-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", function (e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+          });
+
+          card.addEventListener("mouseleave", function () {
+            card.style.transform =
+              "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+          });
+        });
+      }
+
+      // Language system
+      const translations = {
+        en: {
+          subtitle: "AI Engineer & Digital Craftsman",
+          aboutTitle: "About Me",
+          aiTitle: "AI Engineering",
+          aiDescription:
+            "Senior AI Engineer passionate about generative AI, transforming cutting-edge research into real-world applications. Building the future with intelligent systems and innovative solutions.",
+          founderTitle: "Future Founder",
+          founderDescription:
+            "Dedicated to turning AI innovations into impactful businesses. Every project is a step toward building solutions that reshape how we interact with technology.",
+          guitarTitle: "Virtuoso Guitarist",
+          guitarDescription:
+            "When I'm not coding neural networks, I'm crafting musical masterpieces. Guitar is my creative outlet, where technical precision meets artistic expression.",
+          fitnessTitle: "MMA & Bodybuilding",
+          fitnessDescription:
+            "Physical and mental discipline drive my success. MMA sharpens my strategic thinking while bodybuilding builds the persistence needed to tackle complex AI challenges.",
+          footerText: "© 2025 Yağız Can AKAY. Crafted with passion and pixels.",
+        },
+        tr: {
+          subtitle: "AI Mühendisi & Dijital Sanatçı",
+          aboutTitle: "Hakkımda",
+          aiTitle: "AI Mühendisliği",
+          aiDescription:
+            "Üretken AI konusunda tutkulu Kıdemli AI Mühendisi, son teknoloji araştırmaları gerçek dünya uygulamalarına dönüştürüyor. Akıllı sistemler ve yenilikçi çözümlerle geleceği inşa ediyorum.",
+          founderTitle: "Gelecek Kurucu",
+          founderDescription:
+            "AI yeniliklerini etkili işletmelere dönüştürmeye adanmış. Her proje, teknoloji ile etkileşim şeklimizi yeniden şekillendiren çözümler oluşturma yolunda bir adım.",
+          guitarTitle: "Virtüöz Gitarist",
+          guitarDescription:
+            "Sinir ağları kodlamadığım zamanlarda müzikal başyapıtlar yaratıyorum. Gitar benim yaratıcı çıkışım, teknik hassasiyetin sanatsal ifadeyle buluştuğu yer.",
+          fitnessTitle: "MMA & Vücut Geliştirme",
+          fitnessDescription:
+            "Fiziksel ve zihinsel disiplin başarımı yönlendiriyor. MMA stratejik düşüncemi keskinleştirirken, vücut geliştirme karmaşık AI zorluklarıyla başa çıkmak için gereken kararlılığı inşa ediyor.",
+          footerText: "© 2025 Yağız Can AKAY. Tutku ve piksellerle hazırlandı.",
+        },
+      };
+
+      let currentLang = localStorage.getItem("language") || "en";
+
+      function updateLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem("language", lang);
+
+        // Update button text
+        document.querySelector(".lang-text").textContent =
+          lang === "en" ? "TR" : "EN";
+
+        // Update all translatable elements
+        Object.keys(translations[lang]).forEach((key) => {
+          const element = document.querySelector(`[data-key="${key}"]`);
+          if (element) {
+            element.textContent = translations[lang][key];
+          }
+        });
+      }
+
+      // Initialize everything when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        createParticles();
+        createClouds();
+        mouseFollowEffect();
+
+        // Initialize language
+        updateLanguage(currentLang);
+
+        // Language toggle functionality
+        document
+          .getElementById("languageBtn")
+          .addEventListener("click", function () {
+            const newLang = currentLang === "en" ? "tr" : "en";
+            updateLanguage(newLang);
+          });
+
+        // Add scroll event listener for parallax
+        window.addEventListener("scroll", parallaxScroll);
+
+        // Add intersection observer for animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll(".section").forEach((section) => {
+          section.style.opacity = "0";
+          section.style.transform = "translateY(30px)";
+          section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>
